@@ -9,18 +9,25 @@
 import UIKit
 
 class ViewController: UIViewController {
-
-    override public func viewDidLoad() {
+    
+    @IBOutlet private weak var imageView: UIImageView! //UIImageViewと接続
+    
+    override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
     }
-
-    @IBOutlet private weak var imageView: UIImageView! //画像を表示するため、UIImageViewと接続
-    @IBAction private func actionShowActivityView(_ sender: UIBarButtonItem) { //toolbar上に配置したActionボタンと接続
+    
+    //toolbar上に配置したActionボタンと接続
+    @IBAction private func actionShowActivityView(_ sender: UIBarButtonItem) {
         
-        let controller = UIActivityViewController(activityItems: [imageView.image!], applicationActivities: nil) //UIActivityViewのインスタンスを定数controller内に格納し、引数にはimageViewの画像を指定。
+        //引数にはimageViewの画像を指定
+        let controller = UIActivityViewController(activityItems: [imageView.image!],
+                                                  applicationActivities: nil)
         
-        self.present(controller, animated: true, completion: {print("表示完了")}) //モーダルビューコントローラにcontrollerを表示し、表示が完了したらデバッグ欄に「表示完了」と出力。
+        //表示が完了したらデバッグ欄に「表示完了」と出力。
+        self.present(controller, animated: true, completion: {
+            print("表示完了")
+        })
         
     }
 }
